@@ -149,7 +149,7 @@ namespace zohdUAVscript
                                 {
                                     
                                     Console.WriteLine("Welcome to the serial monitor");
-                                    Console.WriteLine("SENDING: " + GetOutput());
+                                    Console.WriteLine("SENDING: " + ControllerState);
                                     Console.WriteLine("READING: " + LoRa.ReadExisting());
                                     Console.SetCursorPosition(0, 0);
 

@@ -133,8 +133,13 @@ void OnRxDone( uint8_t *payload, uint16_t size, int16_t rssi, int8_t snr )
     rxpacket[size]='\0';
     Radio.Sleep( );
   
-    Serial.printf("received packet %s",rxpacket);
-    Serial.println("");
+    for(int i=0; i<30; i++)
+    {
+      Serial.print(rxpacket[i]);  
+    }
+
+
+   
 
     state=STATE_TX;
 }

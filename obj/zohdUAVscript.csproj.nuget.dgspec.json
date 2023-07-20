@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\petar_0r3wy5h\\source\\repos\\zohdUAVscript\\zohdUAVscript.csproj": {}
+    "C:\\Users\\petar_0r3wy5h\\source\\repos\\zohdUAVscript\\ZOHD\\zohdUAVscript.csproj": {}
   },
   "projects": {
-    "C:\\Users\\petar_0r3wy5h\\source\\repos\\zohdUAVscript\\zohdUAVscript.csproj": {
+    "C:\\Users\\petar_0r3wy5h\\source\\repos\\zohdUAVscript\\ZOHD\\zohdUAVscript.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\petar_0r3wy5h\\source\\repos\\zohdUAVscript\\zohdUAVscript.csproj",
+        "projectUniqueName": "C:\\Users\\petar_0r3wy5h\\source\\repos\\zohdUAVscript\\ZOHD\\zohdUAVscript.csproj",
         "projectName": "zohdUAVscript",
-        "projectPath": "C:\\Users\\petar_0r3wy5h\\source\\repos\\zohdUAVscript\\zohdUAVscript.csproj",
+        "projectPath": "C:\\Users\\petar_0r3wy5h\\source\\repos\\zohdUAVscript\\ZOHD\\zohdUAVscript.csproj",
         "packagesPath": "C:\\Users\\petar_0r3wy5h\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\petar_0r3wy5h\\source\\repos\\zohdUAVscript\\obj\\",
+        "outputPath": "C:\\Users\\petar_0r3wy5h\\source\\repos\\zohdUAVscript\\ZOHD\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

@@ -94,16 +94,19 @@ void loop()
     case STATE_TX:
      {
         txNumber++;
-      
-      for(int i=0; i<30; i++)
+      Serial.flush();
+      for(int i=-1; i<30; i++)
       {
         txpacket[i] = Serial.read();
       }
       Serial.printf("read from console: %s",txpacket);
       Serial.println("");
       Radio.Send( (uint8_t *)txpacket, strlen(txpacket) );
-      Serial.flush();
+      delay(20);
+      memset(txpacket, 0, 30);
       state=LOWPOWER;
+      Serial.flush();
+
      }     
       break;
     case STATE_RX:

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gNbkDo6vkQ4v1LtOfWtfzvDvu6zzqrbOqSttYCu7+pdvb1J7ueCTZ+s243L5h37kcw6b6W70NOH/gKfqokDeHg==",
+  "dgSpecHash": "1Ah8brzlAcCri1kHO9J5mpPrmSixccs1sukn8uSbW9tr+bBiatH4DHKz6UBePQMLzYt2AAbygy6XS8JUSqKlTw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\petar_0r3wy5h\\source\\repos\\zohdUAVscript\\zohdUAVscript.csproj",
+  "projectFilePath": "C:\\Users\\petar_0r3wy5h\\source\\repos\\zohdUAVscript\\ZOHD\\zohdUAVscript.csproj",
   "expectedPackageFiles": [
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
