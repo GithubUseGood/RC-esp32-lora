@@ -22,12 +22,12 @@
 
 #define TX_OUTPUT_POWER                             5        // dBm
 
-#define LORA_BANDWIDTH                              0         // [0: 125 kHz,
+#define LORA_BANDWIDTH                              2         // [0: 125 kHz,
                                                               //  1: 250 kHz,
                                                               //  2: 500 kHz,
                                                               //  3: Reserved]
 #define LORA_SPREADING_FACTOR                       7         // [SF7..SF12]
-#define LORA_CODINGRATE                             1         // [1: 4/5,
+#define LORA_CODINGRATE                             4         // [1: 4/5,
                                                               //  2: 4/6,
                                                               //  3: 4/7,
                                                               //  4: 4/8]
@@ -37,7 +37,7 @@
 #define LORA_IQ_INVERSION_ON                        false
 
 
-#define RX_TIMEOUT_VALUE                            1000
+#define RX_TIMEOUT_VALUE                            100
 #define BUFFER_SIZE                                 30 // Define the payload size here
 
 char txpacket[BUFFER_SIZE];
@@ -97,10 +97,11 @@ void loop()
       sprintf(txpacket,"hello %d, Rssi : %d",txNumber,Rssi);
       //Serial.printf("\r\nsending packet \"%s\" , length %d\r\n",txpacket, strlen(txpacket));
       Radio.Send( (uint8_t *)txpacket, strlen(txpacket) );
+      
       state=LOWPOWER;
       break;
     case STATE_RX:
-      //Serial.println("into RX mode");
+      
       Radio.Rx( 0 );
       state=LOWPOWER;
       break;
