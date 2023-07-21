@@ -99,7 +99,7 @@ void loop()
       {
         txpacket[i] = Serial.read();
       }
-      Serial.printf("read from console: %s",txpacket);
+      Serial.printf("read from serial: %s",txpacket);
       Serial.println("");
       Radio.Send( (uint8_t *)txpacket, strlen(txpacket) );
      
