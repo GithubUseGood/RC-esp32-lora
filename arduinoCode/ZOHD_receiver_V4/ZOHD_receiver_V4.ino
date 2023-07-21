@@ -38,7 +38,7 @@
 
 
 #define RX_TIMEOUT_VALUE                            100
-#define BUFFER_SIZE                                 30 // Define the payload size here
+#define BUFFER_SIZE                                 35 // Define the payload size here
 
 char txpacket[BUFFER_SIZE];
 char rxpacket[BUFFER_SIZE];
@@ -92,12 +92,7 @@ void loop()
   switch(state)
   {
     case STATE_TX:
-      
-      txNumber++;
-      sprintf(txpacket,"hello %d, Rssi : %d",txNumber,Rssi);
-      //Serial.printf("\r\nsending packet \"%s\" , length %d\r\n",txpacket, strlen(txpacket));
-      Radio.Send( (uint8_t *)txpacket, strlen(txpacket) );
-      
+        Radio.Rx( 0 );
       state=LOWPOWER;
       break;
     case STATE_RX:

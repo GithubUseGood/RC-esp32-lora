@@ -79,11 +79,11 @@ namespace zohdUAVscript
                         }
 
                         ControllerState = GetOutput();
-                        while (ControllerState.Length < 30) // tu je  jer mora duljina poruke uvjek biti ista zbog arduina //
+                        while (ControllerState.Length < 35) // tu je  jer mora duljina poruke uvjek biti ista zbog arduina //
                         {
                             ControllerState = ControllerState + ".";
                         }
-                        if (ControllerState.Length > 30) // poruka je preduga
+                        if (ControllerState.Length > 35) // poruka je preduga
                         {
                             Console.WriteLine("WARNING: Controller state to long. Edit max lenght in c# and arduino scripts.");
                            
@@ -184,7 +184,7 @@ namespace zohdUAVscript
                 state = controller.GetState();
                 string message = "";
 
-                message = MapValue(state.Gamepad.LeftThumbX, 0, 32767, 0, 180) + "q" + MapValue(state.Gamepad.LeftThumbY, 0, 32767, 0, 180) + "w" + MapValue(state.Gamepad.RightThumbX, 0, 32767, 0, 180) + "e" + MapValue(state.Gamepad.RightThumbY, 0, 32767, 0, 180) + "r" + state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.Y) ;
+                message = MapValue(state.Gamepad.LeftThumbX, 0, 32767, 0, 180) + "q" + MapValue(state.Gamepad.LeftThumbY, 0, 32767, 0, 180) + "w" + MapValue(state.Gamepad.RightThumbX, 0, 32767, 0, 180) + "e" + MapValue(state.Gamepad.RightThumbY, 0, 32767, 0, 180) + "r" + state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.Y) + "t" + state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.B) ;
 
 
                 return message;

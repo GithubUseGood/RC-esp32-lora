@@ -38,7 +38,7 @@
 
 
 #define RX_TIMEOUT_VALUE                            100
-#define BUFFER_SIZE                                 30 // Define the payload size here
+#define BUFFER_SIZE                                 35 // Define the payload size here
 
 char txpacket[BUFFER_SIZE];
 char rxpacket[BUFFER_SIZE];
@@ -112,8 +112,19 @@ void loop()
     case STATE_RX:
     {
        
-      Radio.Rx( 0 );
+         txNumber++;
+      Serial.flush();
+      for(int i=-1; i<30; i++)
+      {
+        txpacket[i] = Serial.read();
+      }
+      Serial.printf("read from serial: %s",txpacket);
+      Serial.println("");
+      Radio.Send( (uint8_t *)txpacket, strlen(txpacket) );
+     
+      memset(txpacket, 0, 30);
       state=LOWPOWER;
+      Serial.flush();
     }     
       break;
     case LOWPOWER:
