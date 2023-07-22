@@ -29,19 +29,19 @@ namespace zohdUAVscript
 
         ControllerNotFoundGoto:
 
-            if (controller.IsConnected == true) // provjerava jeli controller spojen
+            if (controller.IsConnected == true) // Checks if the controller is conected
             {
                 Console.WriteLine("Controller found and connected");
 
             LoRaNotRealPort:
                 Console.WriteLine("Chose port on which the LoRa module is connected to options are:");
 
-                foreach (string s in SerialPort.GetPortNames()) // nalazi sve portove otvorene
+                foreach (string s in SerialPort.GetPortNames()) // gets all open ports
                 {
                     Console.WriteLine(s);
                 }
                 string Port = Console.ReadLine();
-                foreach (string s in SerialPort.GetPortNames()) // provjeri jeli postoji taj port
+                foreach (string s in SerialPort.GetPortNames()) // checks if that port exists
                 {
                     if (Port == s)
                     {
@@ -60,17 +60,17 @@ namespace zohdUAVscript
                 LoRa.PortName = Port;
         
 
-                try // pokusa se spojiti sa ESP32
+                try // attempts to send controller data
                 {
                     LoRa.Open();
                     Console.WriteLine("Attemptng connection");
-                    Console.WriteLine("Type end to end data transfer, or type serial to get a serial monitor");
+                    Console.WriteLine("Type end to end data transfer, or type serial monitor to get a serial monitor - not finished");
 
                     while (ForwardData == true)
                     {
-                        if (CanSendMessage == true) // samo jednom poslati 
+                        if (CanSendMessage == true) // notify user that the script is connected once rather than every loop
                         {
-                            Console.WriteLine("Connected and transfering data now");// ovu poruku
+                            Console.WriteLine("Connected and transfering data now");
                             CanSendMessage = false;
                         }
                         if (LoRa.IsOpen == false)
@@ -79,25 +79,17 @@ namespace zohdUAVscript
                         }
 
                         ControllerState = GetOutput();
-                        while (ControllerState.Length < 35) // tu je  jer mora duljina poruke uvjek biti ista zbog arduina //
+                        while (ControllerState.Length < 35) // normalizes data for esp32 buffer
                         {
                             ControllerState = ControllerState + ".";
                         }
-                        if (ControllerState.Length > 35) // poruka je preduga
+                        if (ControllerState.Length > 35) // message is to long for esp32 buffer
                         {
                             Console.WriteLine("WARNING: Controller state to long. Edit max lenght in c# and arduino scripts.");
                            
                         }
                         
-                            LoRa.WriteLine(ControllerState + ".");
-                        
-                           
-                        
-                            
-                       
-                       
-                        
-                 
+                            LoRa.WriteLine(ControllerState + "."); // tells esp32 when the message is finished
 
                         CheckForCommands(LoRa);
                     }
@@ -142,7 +134,7 @@ namespace zohdUAVscript
                     {
                         switch (command)
                         {
-                            case "serial monitor": // ne radi bas :(
+                            case "serial monitor": // todo: fix
 
                                 Console.Clear();
                                 while (true)
@@ -160,7 +152,7 @@ namespace zohdUAVscript
 
                                 break;
 
-                            case "end":
+                            case "end": // todo: fix
                                 ForwardData = false;
                                 break;
 
@@ -178,35 +170,25 @@ namespace zohdUAVscript
 
             }
 
-            string GetOutput() // uzme stanje controllera i vrati u stringu
+            string GetOutput() // used to get controller state as a string
             {
                 State state;
                 state = controller.GetState();
                 string message = "";
 
-                message = MapValue(state.Gamepad.LeftThumbX, 0, 32767, 0, 180) + "q" + MapValue(state.Gamepad.LeftThumbY, 0, 32767, 0, 180) + "w" + MapValue(state.Gamepad.RightThumbX, 0, 32767, 0, 180) + "e" + MapValue(state.Gamepad.RightThumbY, 0, 32767, 0, 180) + "r" + state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.Y) + "t" + state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.B) ;
+                message = MapValue(state.Gamepad.LeftThumbX, 0, 32767, 0, 180) + "q"
+                 + MapValue(state.Gamepad.LeftThumbY, 0, 32767, 0, 180) + "w"
+                  + MapValue(state.Gamepad.RightThumbX, 0, 32767, 0, 180) + "e"
+                   + MapValue(state.Gamepad.RightThumbY, 0, 32767, 0, 180) + "r"
+                    + state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.Y) + "t" + state.Gamepad.Buttons.HasFlag(GamepadButtonFlags.B) ; //inneficent but latency is already around 50ms
 
 
                 return message;
 
             }
 
-         
-
-
-
-
-
-
-
-
-
-
         }
 
-
     }
-
-
 
 }
