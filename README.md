@@ -1,4 +1,4 @@
-# Radio control solution useing esp32 LoRa.
+# Radio control solution using esp32 LoRa.
  This uses a c# console application to forward mapped data of a external controller.
  Then the esp32 picks up on it from serial communication and sends it to the 2nd esp32 with LoRa functions.
  
